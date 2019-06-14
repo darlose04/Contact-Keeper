@@ -24,22 +24,22 @@ const ContactState = props => {
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
   // Add contact
-  const addContact = contact => {
+  const addContact = async contact => {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
-    }
+    };
 
     try {
-      const res = await axios.post('/api/contacts', contact, config);
+      const res = await axios.post("/api/contacts", contact, config);
 
       dispatch({ type: ADD_CONTACT, payload: res.data });
     } catch (err) {
-      dispatch({ 
+      dispatch({
         type: CONTACT_ERROR,
         payload: err.response.msg
-      })
+      });
     }
   };
 
@@ -86,8 +86,7 @@ const ContactState = props => {
         clearCurrent,
         updateContact,
         filterContacts,
-        clearFilter,
-        
+        clearFilter
       }}
     >
       {props.children}
