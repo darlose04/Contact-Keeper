@@ -10,7 +10,6 @@ connectDB();
 // Init Middleware
 app.use(express.json({ extended: false }));
 
-// Don't need this, it will mess up the deployment
 // app.get("/", (req, res) => {
 //   res.json({ msg: "Welcome to the ContactKeeper API" });
 // });
