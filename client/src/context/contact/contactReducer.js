@@ -38,7 +38,7 @@ export default (state, action) => {
         ...state,
         // this will return all contacts that are not the current id, which is the one being removed
         contacts: state.contacts.filter(
-          contact => contact.id !== action.payload
+          contact => contact._id !== action.payload
         ),
         loading: false
       };
