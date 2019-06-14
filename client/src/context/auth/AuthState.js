@@ -27,6 +27,20 @@ const AuthState = props => {
   // THESE ARE ACTIONS
 
   // Load User
+  const loadUser = async () => {
+    // @todo - load token into global headers
+
+    try {
+      const res = await axios.get("api/auth");
+
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({ type: AUTH_ERROR });
+    }
+  };
 
   // Register User
   const register = async formData => {
@@ -67,7 +81,8 @@ const AuthState = props => {
         user: state.user,
         error: state.error,
         register,
-        clearErrors
+        clearErrors,
+        loadUser
       }}
     >
       {props.children}
